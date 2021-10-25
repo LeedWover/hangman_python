@@ -11,17 +11,21 @@ def play(word, lives):
 
     while sumOfGuessedLetters < len(wordArray):
         i = 0
+        founds = 0
         guessedLetter = input("Guess a letter")
         for letter in wordArray:
             i += 1
-            print(letter)
             if(letter == guessedLetter):
                 print('Guessed it')
                 wordPlaceHolderArray[i - 1] = letter
                 sumOfGuessedLetters += 1
-            else:
-                print('No match')
-            print(wordPlaceHolderArray)   
-    
+                founds += 1
+        if (founds <= 0):
+            print('No match')
+            lives -= 1
+        print('lives', lives)
+        if(lives <= 0):
+            print('You lost')
+            return
 
 play(word, 5)
