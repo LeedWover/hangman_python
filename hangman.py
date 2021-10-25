@@ -1,7 +1,8 @@
 word = "marketplace"
 
+
 def play(word, lives):
-    
+
     wordArray = []
     wordPlaceHolderArray = []
     sumOfGuessedLetters = 0
@@ -21,7 +22,82 @@ def play(word, lives):
                 sumOfGuessedLetters += 1
             else:
                 print('No match')
-            print(wordPlaceHolderArray)   
-    
+            print(wordPlaceHolderArray)
+
 
 play(word, 5)
+
+
+def akasztofa(probak):
+    szakaszok = [
+        """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |     / \\
+                   -
+                """,
+
+        """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |     / 
+                   -
+                """,
+
+        """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |      
+                   -
+                """,
+
+        """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|
+                   |      |
+                   |     
+                   -
+                """,
+
+        """
+                   --------
+                   |      |
+                   |      O
+                   |      |
+                   |      |
+                   |     
+                   -
+                """,
+
+        """
+                   --------
+                   |      |
+                   |      O
+                   |    
+                   |      
+                   |     
+                   -
+                """,
+
+        """
+                   --------
+                   |      |
+                   |      
+                   |    
+                   |      
+                   |     
+                   -
+                """
+    ]
+    return szakaszok[probak]
