@@ -73,38 +73,40 @@ def play(word, lives):
                     -
                     """
     ]
+    import msvcrt
     import os
+    import time
     wordArray = []
     wordPlaceHolderArray = []
+    charNotFound = []
     sumOfGuessedLetters = 0
     for i in word:
         wordArray.append(i)
-        wordPlaceHolderArray.append("_")
+        wordPlaceHolderArray.append("_ ")
 
     while sumOfGuessedLetters < len(wordArray):
 
+        os.system('cls')
         i = 0
         founds = 0
+        print(wordPlaceHolderArray)
+        print('lives', lives)
+        print(charNotFound)
         guessedLetter = input("Guess a letter: ")
-        os.system('cls')
         if(len(guessedLetter) > 1):
-            guessedLetter = input("bad formatted input, guess only one letter")
+            guessedLetter = input("Bad formatted input, guess only one letter")
         for letter in wordArray:
             i += 1
             if(letter == guessedLetter):
-                print('You got it')
                 wordPlaceHolderArray[i - 1] = letter
                 sumOfGuessedLetters += 1
                 founds += 1
-                print(wordPlaceHolderArray)
         if (founds <= 0):
-            print('No match')
-            print(szakaszok[lives - 1])
+            szakaszok[lives - 1]
             lives -= 1
-        print('lives', lives)
+            charNotFound.append(guessedLetter)
         if(lives <= 0):
             print('You lost')
             return
-
 
 play(word, 7)
