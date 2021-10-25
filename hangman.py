@@ -16,7 +16,7 @@ def play(word, lives):
             i += 1
             print(letter)
             if(letter == guessedLetter):
-                print('Guessed it')
+                print('You got it')
                 wordPlaceHolderArray[i - 1] = letter
                 sumOfGuessedLetters += 1
             else:
