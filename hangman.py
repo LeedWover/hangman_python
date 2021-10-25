@@ -73,6 +73,7 @@ def play(word, lives):
                     -
                     """
     ]
+    import os
     wordArray = []
     wordPlaceHolderArray = []
     sumOfGuessedLetters = 0
@@ -84,7 +85,8 @@ def play(word, lives):
 
         i = 0
         founds = 0
-        guessedLetter = input("Guess a letter")
+        guessedLetter = input("Guess a letter: ")
+        os.system('cls')
         if(len(guessedLetter) > 1):
             guessedLetter = input("bad formatted input, guess only one letter")
         for letter in wordArray:
