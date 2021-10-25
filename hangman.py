@@ -81,6 +81,7 @@ def play(word, lives):
         wordPlaceHolderArray.append("_")
 
     while sumOfGuessedLetters < len(wordArray):
+
         i = 0
         founds = 0
         guessedLetter = input("Guess a letter")
