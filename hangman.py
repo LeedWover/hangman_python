@@ -89,6 +89,7 @@ def play(word, lives):
         os.system('cls')
         i = 0
         founds = 0
+        print(szakaszok[lives -1])
         print(wordPlaceHolderArray)
         print('lives', lives)
         print(charNotFound)
@@ -102,7 +103,6 @@ def play(word, lives):
                 sumOfGuessedLetters += 1
                 founds += 1
         if (founds <= 0):
-            szakaszok[lives - 1]
             lives -= 1
             charNotFound.append(guessedLetter)
         if(lives <= 0):
