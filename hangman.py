@@ -11,6 +11,9 @@ def play(word, lives):
                     |      |
                     |     / \\
                     -
+    Bad guesses: {}
+    Lives: {}
+    {}
                     """,
 
             """
@@ -21,6 +24,9 @@ def play(word, lives):
                     |      |
                     |     / 
                     -
+    Bad guesses: {}
+    Lives: {}
+    {}
                     """,
 
             """
@@ -31,6 +37,9 @@ def play(word, lives):
                     |      |
                     |      
                     -
+    Bad guesses: {}
+    Lives: {}
+    {}
                     """,
 
             """
@@ -41,6 +50,9 @@ def play(word, lives):
                     |      |
                     |     
                     -
+    Bad guesses: {}
+    Lives: {}
+    {}                    
                     """,
 
             """
@@ -51,6 +63,9 @@ def play(word, lives):
                     |      |
                     |     
                     -
+    Bad guesses: {}
+    Lives: {}
+    {}
                     """,
 
             """
@@ -61,19 +76,25 @@ def play(word, lives):
                     |      
                     |     
                     -
-                    """,
+    Bad guesses: {}
+    Lives: {}
+    {}                       
+                                """,
 
-            """
+                        """
                     --------
-                    |      |
                     |      
                     |    
                     |      
                     |     
                     -
-                    """
+    Bad guesses: {}
+    Lives: {}
+    {}                       
+                                """
     ]
     wordArray = []
+    badGuesses = []
     wordPlaceHolderArray = []
     sumOfGuessedLetters = 0
     for i in word:
@@ -83,7 +104,10 @@ def play(word, lives):
     while sumOfGuessedLetters < len(wordArray):
         i = 0
         founds = 0
-        guessedLetter = input("Guess a letter")
+        print('lives', lives)
+        print(wordPlaceHolderArray)
+        print(szakaszok[lives].format(badGuesses, lives, wordPlaceHolderArray))
+        guessedLetter = input("Guess a letter: ")
         if(len(guessedLetter) > 1):
             guessedLetter = input("bad formatted input, guess only one letter")
         for letter in wordArray:
@@ -94,9 +118,11 @@ def play(word, lives):
                 sumOfGuessedLetters += 1
                 founds += 1
                 print(wordPlaceHolderArray)
+            
         if (founds <= 0):
             print('No match')
             print(szakaszok[lives - 1])
+            badGuesses.append(guessedLetter)
             lives -= 1
         print('lives', lives)
         if(lives <= 0):
@@ -104,4 +130,4 @@ def play(word, lives):
             return
 
 
-play(word, 7)
+play(word, 6)
