@@ -2,7 +2,77 @@ word = "marketplace"
 
 
 def play(word, lives):
+    szakaszok = [
+            """
+                    --------
+                    |      |
+                    |      O
+                    |     \\|/
+                    |      |
+                    |     / \\
+                    -
+                    """,
 
+            """
+                    --------
+                    |      |
+                    |      O
+                    |     \\|/
+                    |      |
+                    |     / 
+                    -
+                    """,
+
+            """
+                    --------
+                    |      |
+                    |      O
+                    |     \\|/
+                    |      |
+                    |      
+                    -
+                    """,
+
+            """
+                    --------
+                    |      |
+                    |      O
+                    |     \\|
+                    |      |
+                    |     
+                    -
+                    """,
+
+            """
+                    --------
+                    |      |
+                    |      O
+                    |      |
+                    |      |
+                    |     
+                    -
+                    """,
+
+            """
+                    --------
+                    |      |
+                    |      O
+                    |    
+                    |      
+                    |     
+                    -
+                    """,
+
+            """
+                    --------
+                    |      |
+                    |      
+                    |    
+                    |      
+                    |     
+                    -
+                    """
+    ]
     wordArray = []
     wordPlaceHolderArray = []
     sumOfGuessedLetters = 0
@@ -14,6 +84,8 @@ def play(word, lives):
         i = 0
         founds = 0
         guessedLetter = input("Guess a letter")
+        if(len(guessedLetter) > 1):
+            guessedLetter = input("bad formatted input, guess only one letter")
         for letter in wordArray:
             i += 1
             if(letter == guessedLetter):
@@ -21,8 +93,10 @@ def play(word, lives):
                 wordPlaceHolderArray[i - 1] = letter
                 sumOfGuessedLetters += 1
                 founds += 1
+                print(wordPlaceHolderArray)
         if (founds <= 0):
             print('No match')
+            print(szakaszok[lives - 1])
             lives -= 1
         print('lives', lives)
         if(lives <= 0):
@@ -30,79 +104,4 @@ def play(word, lives):
             return
 
 
-play(word, 5)
-
-
-def akasztofa(probak):
-    szakaszok = [
-        """
-                   --------
-                   |      |
-                   |      O
-                   |     \\|/
-                   |      |
-                   |     / \\
-                   -
-                """,
-
-        """
-                   --------
-                   |      |
-                   |      O
-                   |     \\|/
-                   |      |
-                   |     / 
-                   -
-                """,
-
-        """
-                   --------
-                   |      |
-                   |      O
-                   |     \\|/
-                   |      |
-                   |      
-                   -
-                """,
-
-        """
-                   --------
-                   |      |
-                   |      O
-                   |     \\|
-                   |      |
-                   |     
-                   -
-                """,
-
-        """
-                   --------
-                   |      |
-                   |      O
-                   |      |
-                   |      |
-                   |     
-                   -
-                """,
-
-        """
-                   --------
-                   |      |
-                   |      O
-                   |    
-                   |      
-                   |     
-                   -
-                """,
-
-        """
-                   --------
-                   |      |
-                   |      
-                   |    
-                   |      
-                   |     
-                   -
-                """
-    ]
-    return szakaszok[probak]
+play(word, 7)
