@@ -1,7 +1,8 @@
 word = "marketplace"
 
+
 def play(word, lives):
-    
+
     wordArray = []
     wordPlaceHolderArray = []
     sumOfGuessedLetters = 0
@@ -28,4 +29,80 @@ def play(word, lives):
             print('You lost')
             return
 
+
 play(word, 5)
+
+
+def akasztofa(probak):
+    szakaszok = [
+        """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |     / \\
+                   -
+                """,
+
+        """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |     / 
+                   -
+                """,
+
+        """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |      
+                   -
+                """,
+
+        """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|
+                   |      |
+                   |     
+                   -
+                """,
+
+        """
+                   --------
+                   |      |
+                   |      O
+                   |      |
+                   |      |
+                   |     
+                   -
+                """,
+
+        """
+                   --------
+                   |      |
+                   |      O
+                   |    
+                   |      
+                   |     
+                   -
+                """,
+
+        """
+                   --------
+                   |      |
+                   |      
+                   |    
+                   |      
+                   |     
+                   -
+                """
+    ]
+    return szakaszok[probak]
