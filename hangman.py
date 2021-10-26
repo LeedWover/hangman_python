@@ -131,3 +131,5 @@ def play(word, lives):
 
 
 play(word, 6)
+
+#testing
