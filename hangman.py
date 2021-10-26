@@ -1,4 +1,4 @@
-word = "marketplace"
+word = "Marketplace"
 
 
 def play(word, lives):
@@ -107,18 +107,17 @@ def play(word, lives):
         print('lives', lives)
         print(wordPlaceHolderArray)
         print(szakaszok[lives].format(badGuesses, lives, wordPlaceHolderArray))
-        guessedLetter = input("Guess a letter: ")
+        guessedLetter = input("Guess a letter: ").lower()
         if(len(guessedLetter) > 1):
             guessedLetter = input("bad formatted input, guess only one letter")
         for letter in wordArray:
             i += 1
-            if(letter == guessedLetter):
+            if(letter.lower() == guessedLetter):
                 print('You got it')
                 wordPlaceHolderArray[i - 1] = letter
                 sumOfGuessedLetters += 1
                 founds += 1
                 print(wordPlaceHolderArray)
-            
         if (founds <= 0):
             print('No match')
             print(szakaszok[lives - 1])
