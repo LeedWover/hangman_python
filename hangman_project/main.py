@@ -6,11 +6,11 @@ from graphics import *
 
 def collector():
     menu_starter(menu)
-    listPrint(difficulty)
     import_print("./talk_test.txt")
     inputResult = input('\nKowalsky: Készen állsz?[Y/N]').lower()
     if(inputResult.lower() == 'n'):
         quit() 
+    listPrint(difficulty)
     dif = selectDifficulty()
     live = lives(dif)
     word = exporter(dif)
@@ -18,7 +18,7 @@ def collector():
     print("".join(word.split(" ")))
     return play(word, live)
 
-def formatInputStr(guessedLetter, badGuesses):
+def formatInputStr(guessedLetter, badGuesses, wordArray):
     while guessedLetter == 'quit':
         quitMsg = input('Are you sure? [Y/N]').lower()
         if(quitMsg == 'y'):
@@ -29,13 +29,16 @@ def formatInputStr(guessedLetter, badGuesses):
             guessedLetter = input("\nGuess a letter: ").lower()
         else:
             print('\nBad format')
-         
+    print(wordArray)
     while len(guessedLetter) > 1 or len(guessedLetter) < 1:
         guessedLetter = input('Bad format, try again: ')
     while guessedLetter.isdigit():
         guessedLetter = input('Numbers are not allowed, try again: ')
     while badGuesses.count(guessedLetter) > 0:
         guessedLetter = input('You have tried this letter, try another one: ')
+    while "".join(wordArray).lower().count(guessedLetter) > 0:
+        guessedLetter = input('This letter is already guessed, try another one: ')
+    
     return guessedLetter
 
 def play(word, lives):
@@ -61,16 +64,19 @@ def play(word, lives):
         print(badGuesses)
         #os.system('cls' if os.name == 'nt' else 'clear')
         
-        guessedLetter = formatInputStr(input("\nGuess a letter: ").lower(), badGuesses)
+        guessedLetter = formatInputStr(input("\nGuess a letter: ").lower(), badGuesses, wordPlaceHolderArray)
+        
         for letter in wordArray:
             i += 1
+            
             if(letter.lower() == guessedLetter):
                 wordPlaceHolderArray[i - 1] = letter
                 wordPlaceHolder = "  ".join(wordPlaceHolderArray)
                 sumOfGuessedLetters += 1
                 founds += 1
-               
+
             if wordArray == wordPlaceHolderArray:
+                listPrint(download)
                 import_print("./win.txt")
                 os.system('cls' if os.name == 'nt' else 'clear')
                 import_print("./credit_scene.txt")
