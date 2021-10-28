@@ -1,4 +1,4 @@
-word = "Marketplace"
+word = "MarketPlAce"
 
 
 def play(word, lives):
