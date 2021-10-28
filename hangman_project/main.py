@@ -17,12 +17,23 @@ def collector():
     return play(word, live)
 
 def formatInputStr(guessedLetter, badGuesses):
+    while guessedLetter == 'quit':
+        quitMsg = input('Are you sure? [Y/N]').lower()
+        if(quitMsg == 'y'):
+            print('Goodbye')
+            exit()
+        elif(quitMsg == 'n'):
+            print('\nThen continue the game')
+            guessedLetter = input("\nGuess a letter: ").lower()
+        else:
+            print('\nBad format')
+         
     while len(guessedLetter) > 1 or len(guessedLetter) < 1:
-        guessedLetter = input('Bad format')
+        guessedLetter = input('Bad format, try again: ')
     while guessedLetter.isdigit():
-        guessedLetter = input('Number is not allowed')
-    if badGuesses.count(guessedLetter) > 0:
-        guessedLetter = input('You already tried this letter')
+        guessedLetter = input('Numbers are not allowed, try again: ')
+    while badGuesses.count(guessedLetter) > 0:
+        guessedLetter = input('You have tried this letter, try another one: ')
     return guessedLetter
 
 def play(word, lives):
@@ -42,8 +53,8 @@ def play(word, lives):
         print(word)
         i = 0
         founds = 0
-        print(szakaszok[::-1][lives].format(
-              '♥ ' * lives,  wordPlaceHolder, badGuesses ))
+        print(szakaszok[::-1][lives].format( '♥ ' * lives, wordPlaceHolder))
+        print(badGuesses)
         #os.system('cls' if os.name == 'nt' else 'clear')
         
         guessedLetter = formatInputStr(input("\nGuess a letter: ").lower(), badGuesses)
@@ -54,6 +65,7 @@ def play(word, lives):
                 wordPlaceHolder = "  ".join(wordPlaceHolderArray)
                 sumOfGuessedLetters += 1
                 founds += 1
+                os.system('cls' if os.name == 'nt' else 'clear')
                
             elif wordArray == wordPlaceHolderArray:
                 print(f"\n\nYou got it!\n\nThe invented word is:\n\n{word}")
