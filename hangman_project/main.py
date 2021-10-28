@@ -1,15 +1,31 @@
 import os
+import random
 from word_exproter import *
 from graphic_engine import listPrint
 from graphics import *
+
+hints = [
+    'Az tuti, hogy nem Kazincbarcika.',
+    'Most miért rám nézel, neked kell kitalálnod.',
+    'Szerintem egy város lesz.',
+    'Ne add fel.',
+    'Jobb lesz, ha feladod.',
+    'Én beírnék egy quit-et.'
+
+
+]
 
 
 def collector():
     menu_starter(menu)
     import_print("./talk_test.txt")
     inputResult = input('\nKowalsky: Készen állsz?[Y/N]').lower()
-    if(inputResult.lower() == 'n'):
-        quit() 
+    if(inputResult.lower() == 'y'):
+        inputResult = input('\nKowalsky: De biztos, hogy készen állsz?[Y/N]').lower()
+    elif(inputResult.lower() == 'n'):
+        quit()
+    
+        
     listPrint(difficulty)
     dif = selectDifficulty()
     live = lives(dif)
@@ -29,7 +45,7 @@ def formatInputStr(guessedLetter, badGuesses, wordArray):
             guessedLetter = input("\nGuess a letter: ").lower()
         else:
             print('\nBad format')
-    print(wordArray)
+
     while len(guessedLetter) > 1 or len(guessedLetter) < 1:
         guessedLetter = input('Bad format, try again: ')
     while guessedLetter.isdigit():
@@ -51,19 +67,16 @@ def play(word, lives):
     guessedLetter = ''
     
     for i in word:
-        #if i != " ":
+        
         wordArray.append(i)
         wordPlaceHolderArray.append("_")
 
     while sumOfGuessedLetters < len(wordArray):
-        print(badGuesses)
-        print(word)
         i = 0
         founds = 0
         print(szakaszok[::-1][lives].format( '♥ ' * lives, wordPlaceHolder))
-        print(badGuesses)
-        #os.system('cls' if os.name == 'nt' else 'clear')
-        
+        print('Bad guesses: ', badGuesses)
+        print(random.choice(hints))
         guessedLetter = formatInputStr(input("\nGuess a letter: ").lower(), badGuesses, wordPlaceHolderArray)
         
         for letter in wordArray:
@@ -74,6 +87,7 @@ def play(word, lives):
                 wordPlaceHolder = "  ".join(wordPlaceHolderArray)
                 sumOfGuessedLetters += 1
                 founds += 1
+                os.system('cls' if os.name == 'nt' else 'clear')
 
             if wordArray == wordPlaceHolderArray:
                 listPrint(download)
@@ -86,15 +100,16 @@ def play(word, lives):
                     quit() 
                 elif inputResult.lower() == 'y':
                     collector()  
-                
-
-        print(guessedLetter)       
+                       
         if (founds <= 0):
             if lives == 2:
                 import_print("./beszolas.txt")
+            
             print(szakaszok[lives - 1])
+            
             badGuesses.append(guessedLetter)
             os.system('cls' if os.name == 'nt' else 'clear')
+            
             lives -= 1
 
         if(lives <= 0):
