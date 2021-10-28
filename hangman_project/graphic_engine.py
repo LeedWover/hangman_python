@@ -16,7 +16,7 @@ def listPrint(array):
         
         clearConsole()
         print(array[i])
-        time.sleep(1)
+        #time.sleep(1)
 
 def typewriter(message):
     for char in message:
@@ -31,12 +31,13 @@ def import_print(file):
         lines=f.readlines()
         for i in lines:
             typewriter(i)
-            time.sleep(1)
-        inputResult = input('\nKowalsky: Készen állsz?[Y/N]').lower()
+            time.sleep(2)
+            f.close()
+        """ inputResult = input('\nKowalsky: Készen állsz?[Y/N]').lower()
         if inputResult.lower() == 'Y':
             f.close()
         elif(inputResult.lower() == 'N'):
-            quit()
+            quit() """
 
 
 def menu_starter(array):

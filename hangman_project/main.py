@@ -5,15 +5,17 @@ from graphics import *
 
 
 def collector():
-    #menu_starter(menu)
-    #listPrint(difficulty)
+    menu_starter(menu)
+    listPrint(difficulty)
+    import_print("./talk_test.txt")
+    inputResult = input('\nKowalsky: Készen állsz?[Y/N]').lower()
+    if(inputResult.lower() == 'n'):
+        quit() 
     dif = selectDifficulty()
-    #import_print("./talk_test.txt")
-
     live = lives(dif)
     word = exporter(dif)
     
-    print(word)
+    print("".join(word.split(" ")))
     return play(word, live)
 
 def formatInputStr(guessedLetter, badGuesses):
@@ -44,7 +46,9 @@ def play(word, lives):
     wordPlaceHolder = " _ " * len(word)
     sumOfGuessedLetters = 0
     guessedLetter = ''
+    
     for i in word:
+        #if i != " ":
         wordArray.append(i)
         wordPlaceHolderArray.append("_")
 
@@ -65,22 +69,42 @@ def play(word, lives):
                 wordPlaceHolder = "  ".join(wordPlaceHolderArray)
                 sumOfGuessedLetters += 1
                 founds += 1
-                os.system('cls' if os.name == 'nt' else 'clear')
                
-            elif wordArray == wordPlaceHolderArray:
-                print(f"\n\nYou got it!\n\nThe invented word is:\n\n{word}")
+            if wordArray == wordPlaceHolderArray:
+                import_print("./win.txt")
+                os.system('cls' if os.name == 'nt' else 'clear')
+                import_print("./credit_scene.txt")
+                inputResult = input('\nKowalsky: Megpróbálod újra?[Y/N]').lower()
+                if inputResult.lower() == 'n':
+                    print('Goodbye')
+                    quit() 
+                elif inputResult.lower() == 'y':
+                    collector()  
+                
+
         print(guessedLetter)       
         if (founds <= 0):
-            print('No match')
+            if lives == 2:
+                import_print("./beszolas.txt")
             print(szakaszok[lives - 1])
             badGuesses.append(guessedLetter)
             os.system('cls' if os.name == 'nt' else 'clear')
             lives -= 1
 
         if(lives <= 0):
-            print(f'You lost!\nThe invented word was:\n\n{word}')
+            listPrint(reject)
+            import_print("./game_over.txt")
+            os.system('cls' if os.name == 'nt' else 'clear')
+            import_print("./credit_scene.txt")
+            inputResult = input('\nKowalsky: Megpróbálod újra?[Y/N]').lower()
+            if inputResult.lower() == 'n':
+                print('Jó volt veled játszani!')
+                quit() 
+            elif inputResult.lower() == 'y':
+                collector()  
+            else: 
+                quit()
 
-            return 
-        
+          
 
 collector()
