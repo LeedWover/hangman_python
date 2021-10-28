@@ -16,6 +16,14 @@ def collector():
     print(word)
     return play(word, live)
 
+def formatInputStr(guessedLetter, badGuesses):
+    while len(guessedLetter) > 1 or len(guessedLetter) < 1:
+        guessedLetter = input('Bad format')
+    while guessedLetter.isdigit():
+        guessedLetter = input('Number is not allowed')
+    if badGuesses.count(guessedLetter) > 0:
+        guessedLetter = input('You already tried this letter')
+    return guessedLetter
 
 def play(word, lives):
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -24,23 +32,21 @@ def play(word, lives):
     wordPlaceHolderArray = []
     wordPlaceHolder = " _ " * len(word)
     sumOfGuessedLetters = 0
+    guessedLetter = ''
     for i in word:
         wordArray.append(i)
         wordPlaceHolderArray.append("_")
 
     while sumOfGuessedLetters < len(wordArray):
+        print(badGuesses)
+        print(word)
         i = 0
         founds = 0
         print(szakaszok[::-1][lives].format(
               '♥ ' * lives,  wordPlaceHolder, badGuesses ))
-        guessedLetter = input("\nGuess a letter: ").lower()
-        os.system('cls' if os.name == 'nt' else 'clear')
-        if(len(guessedLetter) > 1):
-            guessedLetter = input("bad formatted input, guess only one letter")
-        for i in badGuesses:    
-            if(guessedLetter == i):
-                guessedLetter = input("this letter already guessed")
-            guessedLetter = input("bad formatted input, guess only one letter")
+        #os.system('cls' if os.name == 'nt' else 'clear')
+        
+        guessedLetter = formatInputStr(input("\nGuess a letter: ").lower(), badGuesses)
         for letter in wordArray:
             i += 1
             if(letter.lower() == guessedLetter):
@@ -51,8 +57,7 @@ def play(word, lives):
                
             elif wordArray == wordPlaceHolderArray:
                 print(f"\n\nYou got it!\n\nThe invented word is:\n\n{word}")
-                
-        
+        print(guessedLetter)       
         if (founds <= 0):
             print('No match')
             print(szakaszok[lives - 1])

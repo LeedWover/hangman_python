@@ -9,8 +9,10 @@ def selectDifficulty():
   dif_lvl = 0 
   while int(dif_lvl) == 0 or int(dif_lvl)>3:
     listPrint(difficulty)
-    dif_lvl = input()
-
+    dif_lvl = input('Select a difficulty:[1:(Easy), 2:(Medium), 3:(Hard)]')
+    print(dif_lvl)
+    while dif_lvl != '1' and dif_lvl != '2' and dif_lvl != '3':
+        dif_lvl = input('Bad format, select a difficulty:[1:(Easy), 2:(Medium), 3:(Hard)]')
     #os.system('cls' if os.name == 'nt' else 'clear')    
   return dif_lvl
 
