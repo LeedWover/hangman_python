@@ -11,14 +11,12 @@ hints = [
     'Ne add fel.',
     'Jobb lesz, ha feladod.',
     'Én beírnék egy quit-et.'
-
-
 ]
 
 
 def collector():
     menu_starter(menu)
-    import_print("./talk_test.txt")
+    import_print("./talk.txt")
     inputResult = input('\nKowalsky: Készen állsz?[Y/N]').lower()
     if(inputResult.lower() == 'y'):
         inputResult = input('\nKowalsky: De biztos, hogy készen állsz?[Y/N]').lower()
